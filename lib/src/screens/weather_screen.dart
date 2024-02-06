@@ -69,6 +69,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("Weather Details"),
           leading: IconButton(
@@ -79,7 +80,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
           actions: [
             Switch(
-              activeColor: Colors.blueAccent,
+              activeColor: Color.fromARGB(255, 11, 199, 237),
               value: showInCelsius,
               onChanged: (val) {
                 setState(() {
@@ -104,7 +105,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                return Center(child: Text('No Data available'));
+                return const Center(child: Text('No Data available'));
               } else if (!snapshot.hasData) {
                 return const Center(child: Text('No data available'));
               } else {
@@ -112,54 +113,65 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
                 return Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          child: Column(
-                            children: [
-                              Text(
-                                showInCelsius
-                                    ? '${daily.temperature}°C'
-                                    : '${_celsiusToFahrenheit(daily.temperature)}°F',
-                                style: const TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 28, 157, 221)),
-                              ),
-                              Text(
-                                "Pressure:${daily.pressure}",
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
-                              ),
-                              Text(
-                                "Humidity:${daily.humidity}",
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
-                              ),
-                              Text(
-                                "Clouds:${daily.clouds}",
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
-                              ),
-                              Text(
-                                "Wind speed:${daily.windSpeed}",
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
-                              ),
-                            ],
-                          ),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 400,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/images/82143.jpg')),
                         ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              showInCelsius
+                                  ? '${daily.temperature}°C'
+                                  : '${_celsiusToFahrenheit(daily.temperature)}°F',
+                              style: const TextStyle(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 255, 255, 255)),
+                            ),
+                            const Text(
+                              'Temp',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 19),
+                            )
+                          ],
+                        ),
+                      ),
+                      Text(
+                        "Pressure:${daily.pressure}",
+                        style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey),
+                      ),
+                      Text(
+                        "Humidity:${daily.humidity}",
+                        style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey),
+                      ),
+                      Text(
+                        "Clouds:${daily.clouds}",
+                        style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey),
+                      ),
+                      Text(
+                        "Wind speed:${daily.windSpeed}",
+                        style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey),
                       )
                     ],
                   ),

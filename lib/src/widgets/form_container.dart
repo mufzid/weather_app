@@ -38,7 +38,7 @@ class _FromCondainerWidgetState extends State<FromCondainerWidget> {
   Widget build(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
+      child: SizedBox(
         // height: 50,
         width: double.infinity,
 
