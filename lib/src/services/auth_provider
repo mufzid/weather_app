@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+class AuthProvider extends ChangeNotifier {
+  String _username = 'testapp@google.com';
+  String _password = 'Test@123456';
+  bool _isLoggedIn = false;
+
+  bool get isLoggedIn => _isLoggedIn;
+
+  Future<void> login(String username, String password) async {
+    
+    await Future.delayed(Duration(seconds: 1));
+
+    if (username == _username && password == _password) {
+      _isLoggedIn = true;
+    } else {
+      _isLoggedIn = false;
+    }
+
+    notifyListeners();
+  }
+}
